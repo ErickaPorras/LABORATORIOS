@@ -1,0 +1,23 @@
+@startuml Estudiante
+class Estudiante {
+  -id : int
+  -nombre : string
+  -email : string
+  -carrera : string
+  +registrar() : void
+  +editarPerfil() : void
+  +consultarCursos() : List<Curso>
+}
+ 
+class Curso {
+  -codigo : string
+  -nombre : string
+  -creditos : int
+  +matricular() : void
+  +retirar() : void
+}
+ 
+Estudiante "1" --> "*" Curso : matrícula
+@enduml
+ 
+ 
