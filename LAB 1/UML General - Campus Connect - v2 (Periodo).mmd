@@ -1,0 +1,55 @@
+classDiagram
+direction LR
+
+class Estudiante {
+  +int IdEstudiante
+  +string Nombre
+  +string Correo
+  +bool Activo
+}
+
+class Profesor {
+  +int IdProfesor
+  +string Nombre
+  +string Correo
+  +string Especialidad
+  +bool Activo
+}
+
+class Curso {
+  +int IdCurso
+  +string Codigo
+  +string Nombre
+  +int Creditos
+  +bool Activo
+}
+
+class Periodo {
+  +int IdPeriodo
+  +string Nombre
+  +date FechaInicio
+  +date FechaFin
+  +bool Activo
+}
+
+class Grupo {
+  +int IdGrupo
+  +string Codigo
+  +string Horario
+  +int CupoMax
+}
+
+class Matricula {
+  +int IdMatricula
+  +int IdEstudiante_FK
+  +int IdGrupo_FK
+  +date Fecha
+  +string Estado
+  +decimal Nota
+}
+
+Profesor "1" --> "0..*" Grupo : imparte
+Curso "1" --> "0..*" Grupo : se_ofrece
+Periodo "1" --> "0..*" Grupo : corresponde
+Estudiante "1" --> "0..*" Matricula : realiza
+Grupo "1" --> "0..*" Matricula : recibe

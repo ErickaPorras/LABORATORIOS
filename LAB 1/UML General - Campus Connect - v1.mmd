@@ -1,0 +1,38 @@
+classDiagram
+direction LR
+
+class Estudiante {
+  +int IdEstudiante
+  +string Nombre
+  +string Correo
+  +bool Activo
+}
+
+class Curso {
+  +int IdCurso
+  +string Codigo
+  +string Nombre
+  +int Creditos
+  +bool Activo
+}
+
+class Matricula {
+  +int IdMatricula
+  +int IdEstudiante_FK
+  +int IdCurso_FK
+  +date Fecha
+  +string Estado
+  +decimal Nota
+}
+
+class Profesor {
+  +int IdProfesor
+  +string Nombre
+  +string Correo
+  +string Especialidad
+  +bool Activo
+}
+
+Estudiante "1" --> "0..*" Matricula : realiza
+Curso "1" --> "0..*" Matricula : recibe
+Profesor "1" --> "0..*" Curso : imparte
