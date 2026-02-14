@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+{
+      background-color: rgba(0, 0, 0, 0.623);
+    }
+    .form-group label {
+      display: block;
+      margin-left: 5px;
+      font-weight: bold;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .submit-button {
+      padding: 10px 50px;
+      border-radius: 15px;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #2563eb;
+      /* Un azul más oscuro al pasar el mouse */
+    }
+
+    .title {
+      text-align: center;
+      color: #d132b7;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+    }
+
+    #main-title {
+      font-size: 2.5em;
+      margin-top:  1em;
+      margin-bottom: 0.2em;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      background-color: #333;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+      background-color: #ffffff;
+      color: rgb(0, 0, 0);
+      padding: 10;
+    }
+
+    <header>
+    <h1 id="main-title" class="title">Plataforma Educativa</h1>
+    <h2 class="title">Universidad Central</h2>
+    <!-- menu -->
+    <nav class="nav-menu">
+      <ul class="nav-list">
+        <li class="menu-item"><a href="index.html">Inicio</a></li>
+        <li class="menu-item"><a href="cursos.html">Cursos</a></li>
+        <li class="menu-item"><a href="contacto.html">Contacto</a></li>
+        <li class="menu-item"><a href="ayuda.html">Ayuda</a></li>
+      </ul>
+    </nav>
+  </header>
+ 
+  Producto
+  <form action="">
+    <div class="form-group">
+      <input type="text" placeholder="Nombre del producto" class="form-input">
+    </div>
+ 
+    <div class="form-group">
+      <input type="number" placeholder="Precio" class="form-input">
+    </div>
+ 
+    <button type="submit" class="submit-button">Agregar</button>
+  </form>
+</body>
+</html>
+
+
+
+    
+

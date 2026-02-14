@@ -1,91 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<!doctype html>
+<html lang="es">
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lab 02</title>
-    <Style>
-    .btn {
-        background-color: #f81fa5;
-        border: none;
-        color: rgb(255, 255, 255);
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 10px 2px;
-        cursor: pointer;
-        border-radius: 12px;
-    }
-    </Style>
-</head>
+    <link rel="stylesheet" href="estilos.css">
+  
+  </head>
 
-<body>
-    <button class="btn" onclick="activarEstilos()">Ver antes / después</button>
+  <body>
+    <button class="btn" onclick="activarEstilos()">
+      Ver antes / después
+    </button>
+
     <h1>Lab 02</h1>
     <p>Este es el primer laboratorio de la asignatura.</p>
-    <p>En este laboratorio, aprenderemos los conceptos básicos de HTML y CSS.</p>
-    <!-- lista ordenada: -->
+    <p>
+      En este laboratorio, aprenderemos los conceptos básicos de HTML y CSS.
+    </p>
+
     <ol type="a">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
     </ol>
+
     <h2>Objetivos</h2>
-    <!-- lista no ordenada: -->
+
     <ul>
-        <li>Aprender a crear una página web básica</li>
-        <li>Familiarizarse con las etiquetas HTML</li>
-        <li>Entender el uso de CSS para el estilo</li>
+      <li>Aprender a crear una página web básica</li>
+      <li>Familiarizarse con las etiquetas HTML</li>
+      <li>Entender el uso de CSS para el estilo</li>
     </ul>
+
     <h2>Tablas</h2>
+
     <table>
-        <!-- encabezado -->
-        <thead>
-            <tr>
-                <!-- columna del encabezado -->
-                <th>Nombre</th>
-                <th>Edad</th>
-                <th>Ciudad</th>
-            </tr>
-        </thead>
-        <!-- cuerpo de la tabla -->
-        <tbody>
-            <!-- fila -->
-            <tr>
-                <!-- columna del cuerpo -->
-                <td><a href="https://www.example.com">Ana</a></td>
-                <td>25</td>
-                <td>Limon</td>
-            </tr>
-            <tr>
-                <td>Juan</td>
-                <td>30</td>
-                <td>Cartago</td>
-            </tr>
-            <tr>
-                <td>Pedro</td>
-                <td>28</td>
-                <td>Puntarenas</td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Ciudad</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Ana</td>
+          <td>25</td>
+          <td>Limón</td>
+        </tr>
+        <tr>
+          <td>Juan</td>
+          <td>30</td>
+          <td>Cartago</td>
+        </tr>
+        <tr>
+          <td>Pedro</td>
+          <td>28</td>
+          <td>Puntarenas</td>
+        </tr>
+      </tbody>
     </table>
+
     <a href="https://www.example.com">Visita nuestro sitio web</a>
 
-    <!-- etiqueta de enlace -->
-    <a href="https://unsplash.com/es/fotos/las-hojas-y-el-follaje-verdes-crean-una-escena-oscura-y-exuberante-4axNezh03UA"
-        target="_blank">
+    <br /><br />
 
-
-        <img src="https://images.unsplash.com/photo-1746908592757-2c1d682b71db?q=80&w=400&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Imagen Naturaleza">
+    <a
+      href="https://unsplash.com"
+      target="_blank"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1746908592757-2c1d682b71db?q=80&w=400&auto=format&fit=crop"
+        alt="Imagen Naturaleza"
+      />
     </a>
 
-
-
     <p>Para más información, visita el sitio web oficial.</p>
-</body>
 
+    <script src="Main.js"></script>
+  </body>
 </html>

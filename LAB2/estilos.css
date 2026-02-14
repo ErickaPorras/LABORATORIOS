@@ -1,0 +1,47 @@
+/* Botón */
+      .btn {
+        background-color: #cc52a3;
+        border: black 1px solid;
+        color: white;
+        padding: 15px 32px;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+      /* Estilos que se activan */
+      .styled {
+        background-color: #f0f8ff;
+        color: #333;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+
+      .styled table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .styled th,
+      .styled td {
+        border: 1px solid #ccc;
+        padding: 8px;
+      }
+
+      .styled th {
+        background: #0b3c5d;
+        color: white;
+      }
+
+      .styled a {
+        color: #0b3c5d;
+        font-weight: bold;
+      }
+
+      .styled img {
+        display: block;
+        margin: 20px auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        max-width: 100%;
+      }
