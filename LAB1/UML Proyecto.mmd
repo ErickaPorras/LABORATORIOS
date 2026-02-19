@@ -1,6 +1,6 @@
 classDiagram
 direction LR
-%%TEMA CITAS MEDICAS
+%% TEMA CITAS MEDICAS - VERSION ACTUALIZADA SIN PAGOS
 
 class Paciente {
   +int IdPaciente
@@ -14,8 +14,14 @@ class Paciente {
 class Medico {
   +int IdMedico
   +string Nombre_Completo
-  +string Especialidad
+  +int IdEspecialidad_FK
   +bool Activo
+}
+
+class Especialidad {
+  +int IdEspecialidad
+  +string NombreEspecialidad
+  +string Descripcion
 }
 
 class Cita {
@@ -25,6 +31,15 @@ class Cita {
   +date Fecha
   +string Hora
   +string Estado
+  +string TipoCita
+}
+
+class HistorialMedico {
+  +int IdHistorial
+  +int IdPaciente_FK
+  +string Diagnostico
+  +string Tratamiento
+  +date FechaRegistro
 }
 
 class Usuario {
@@ -34,6 +49,19 @@ class Usuario {
   +bool Activo
 }
 
+class Recordatorio {
+  +int IdRecordatorio
+  +int IdCita_FK
+  +date FechaEnvio
+  +string Medio
+}
+
+%% RELACIONES
+
 Paciente "1" --> "0..*" Cita : agenda
 Medico "1" --> "0..*" Cita : atiende
 Usuario "1" --> "0..*" Cita : gestiona
+
+Medico "0..*" --> "1" Especialidad : pertenece
+Paciente "1" --> "0..*" HistorialMedico : tiene
+Cita "1" --> "0..*" Recordatorio : envia
