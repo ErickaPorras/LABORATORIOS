@@ -1,0 +1,23 @@
+ body {
+      background-color: #f2f2f2;
+    }
+
+    #ctn-1 {
+      background-color: white;
+      border-radius: 10px;
+    }
+
+    .pintar > .row > div {
+      background-color: #cfe2ff;
+      border: 1px solid #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    table {
+      margin-top: 20px;
+    }
+
+    #title:hover {
+      color: orange;
+    }
