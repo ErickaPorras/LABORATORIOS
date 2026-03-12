@@ -1,124 +1,129 @@
+// importamos el cliente de Supabase para interactuar con la base de datos
+// este cliente ya está configurado con la URL y la clave de acceso a nuestra instancia de Supabase
+import { supabase } from "./supabase.js";
 
-/******************************************************************
- *  UI refs
- ******************************************************************/
-const txtSearch = document.getElementById("txtSearch");
-const selOrder = document.getElementById("selOrder");
+//****************************************
+// Referencias a elementos del DOM
+//****************************************
+// Botones
+const btnClean = document.getElementById("btnclean");
+const btnAdd = document.getElementById("btnAdd");
+const btnCancel = document.getElementById("btnCancel");
 const btnLoad = document.getElementById("btnLoad");
-const btnClear = document.getElementById("btnClear");
+// Campo de búsqueda
+const txtSearch = document.getElementById("txtSearch");
+//Formulario
+const txtNombre = document.getElementById("txtNombre");
+const txtApellido = document.getElementById("txtApellido");
+const txtCorreo = document.getElementById("txtCorreo");
+const txtCarrera = document.getElementById("txtCarrera");
+// Tabla
+const tbody = document.getElementById("tbodyEstudiantes");
 
-const statusEl = document.getElementById("status");
-const tbodyStudents = document.getElementById("tbodyStudents");
-const countEl = document.getElementById("count");
+//Consultar estudiantes al cargar la página
+window.onload = () => {
+  consultarEstudiantes();
+};
+//****************************************
+//Eventos
+//****************************************
+btnLoad.addEventListener("click", async () => consultarEstudiantes());
+btnAdd.addEventListener("click", async () => guardarEstudiante());
 
-/******************************************************************
- *  Helpers
- ******************************************************************/
-function setStatus(message, kind = "muted") {
-  statusEl.className = "status " + (kind === "error" ? "status-error" : "status-muted");
-  statusEl.textContent = message;
-}
+// funcion de flecha
+// const consultarEstudiantes = async () => {};
+// funcion tradicional
+// function consultarEstudiantes() {}
 
-function setCount(n) {
-  countEl.textContent = `${n} registros`;
-}
+// let y const
+// let x = 10;
+// x = 20;
+// const y = 30;
+// y = 40; // error, no se puede reasignar una constante
+// var z = 50;
+// var z = 60; // no error, var permite redeclarar la misma variable
 
-function clearTable() {
-  tbodyStudents.innerHTML = "";
-  setCount(0);
-}
+//****************************************
+//Funciones
+//****************************************
+const consultarEstudiantes = async () => {
+  // usamos el cliente de Supabase para hacer una consulta a la tabla "estudiantes"
+  // json: { "data": [], "error": null }
+  const search = txtSearch.value.trim() || ""; // si el valor es vacío, se asigna una cadena vacía
+  const query = supabase.from("estudiantes").select("id,nombre,apellido,correo,carrera");
 
-function renderRows(rows) {
-  clearTable();
+  // SEBASTIAN JESUS
+  if (search.length > 0) {
+    // query.ilike("nombre", `%${search}%`);
+    query.or(`nombre.ilike.%${search}%,apellido.ilike.%${search}%`);
+  }
+  const { data, error } = await query;
 
-  if (!rows || rows.length === 0) {
-    setStatus("Sin resultados.", "muted");
+  if (error) {
+    console.error(error);
+    alert("Error cargando estudiantes");
     return;
   }
 
-  const frag = document.createDocumentFragment();
+  // Limpiando y llenando la tabla con los datos obtenidos
+  tbody.innerHTML = "";
 
-  rows.forEach((r) => {
-    const tr = document.createElement("tr");
+  // data es un arreglo de objetos, cada objeto representa un estudiante
+  data.forEach((r) => {
+    const tr = document.createElement("tr"); //<tr></tr>
+    tr.setAttribute("data-id", r.id);
+    //<td>${r.id ?? ""}</td>
+    tr.innerHTML = `
+        <td>${r.nombre ?? ""}</td>
+        <td>${r.apellido ?? ""}</td>
+        <td>${r.correo ?? ""}</td>
+        <td>${r.carrera ?? ""}</td>
+        <td>
+          <button class="btnActualizar" data-id="${r.id}">Actualizar</button>
+          <button class="btnEliminar" data-id="${r.id}">Eliminar</button>
+        </td>
+      `;
 
-    const tdId = document.createElement("td");
-    tdId.textContent = r.id ?? "";
-    tr.appendChild(tdId);
-
-    const tdNombre = document.createElement("td");
-    tdNombre.textContent = r.nombre ?? "";
-    tr.appendChild(tdNombre);
-
-    const tdApellido = document.createElement("td");
-    tdApellido.textContent = r.apellido ?? "";
-    tr.appendChild(tdApellido);
-
-    const tdCorreo = document.createElement("td");
-    tdCorreo.textContent = r.correo ?? "";
-    tr.appendChild(tdCorreo);
-
-    const tdCarrera = document.createElement("td");
-    tdCarrera.textContent = r.carrera ?? "";
-    tr.appendChild(tdCarrera);
-
-    frag.appendChild(tr);
+    tbody.appendChild(tr);
   });
+};
 
-  tbodyStudents.appendChild(frag);
-  setCount(rows.length);
-  setStatus("Consulta completada.", "muted");
-}
+const guardarEstudiante = async () => {
+  const estudiante = {
+    nombre: txtNombre.value.trim(),
+    apellido: txtApellido.value.trim(),
+    correo: txtCorreo.value.trim(),
+    carrera: txtCarrera.value.trim(),
+  };
 
-/******************************************************************
- *  Data
- ******************************************************************/
-async function loadStudents() {
-  try {
-    setStatus("Cargando...", "muted");
-
-    const search = (txtSearch.value || "").trim();
-    const order = selOrder.value; // asc | desc
-
-    let query = supabase
-      .from("estudiantes")
-      .select("id,nombre,apellido,correo,carrera")
-      .order("nombre", { ascending: order === "asc" });
-
-    // Simple search by name (ilike)
-    if (search.length > 0) {
-      query = query.ilike("nombre", `%${search}%`);
-    }
-
-    const { data, error } = await query;
-
-    if (error) {
-      setStatus(`Error: ${error.message}`, "error");
-      clearTable();
-      return;
-    }
-
-    renderRows(data);
-  } catch (err) {
-    setStatus("Error inesperado. Revisa consola.", "error");
-    console.error(err);
-    clearTable();
+  if (!estudiante.nombre || !estudiante.apellido || !estudiante.correo || !estudiante.carrera) {
+    alert("Por favor, complete todos los campos");
+    return;
   }
-}
 
-/******************************************************************
- *  Events
- ******************************************************************/
-btnLoad.addEventListener("click", loadStudents);
+  const { error } = await supabase.from("estudiantes").insert([estudiante]);
 
-btnClear.addEventListener("click", () => {
-  txtSearch.value = "";
-  selOrder.value = "asc";
-  clearTable();
-  setStatus("Listo. Presiona “Consultar”.", "muted");
-});
+  if (error) {
+    console.error(error);
+    alert("Error guardando estudiante");
+    return;
+  }
 
-// Optional: search on Enter
-txtSearch.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") loadStudents();
-});
+  alert("Estudiante guardado exitosamente");
+  // Limpiar el formulario
+  txtNombre.value = "";
+  consultarEstudiantes();
+};
+
+const eliminarEstudiante = async (id) => {
+  if (!confirm("¿Está seguro de eliminar este estudiante?")) return;
+  const { error } = await supabase.from("estudiantes").delete().eq("id", id);
+
+  if (error) {
+    console.error(error);
+    alert("Error al eliminar");
+  } else {
+    consultarEstudiantes();
+  }
+};
  
