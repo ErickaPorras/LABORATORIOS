@@ -14,68 +14,59 @@
         <div class="header-subtitle">Consulta de estudiantes</div>
       </div>
 
+      <!-- formulario -->
       <div class="card">
-        <div class="controls">
-          <div class="field">
-            <label for="txtNombre">Nombre:</label>
-            <input
-              type="text"
-              id="txtNombre"
-              placeholder="Ingrese el nombre del estudiante"
-              required
-            />
+        <h1 id="tituloForm">Agregar Estudiantes</h1>
+
+        <!-- IMPORTANTE: agregamos form pero sin cambiar estilos -->
+        <form id="formEstudiante">
+          <div class="controls">
+            <input type="hidden" id="txtId" />
+
+            <div class="field">
+              <label for="txtNombre">Nombre:</label>
+              <input type="text" id="txtNombre" placeholder="Ingrese el nombre del estudiante" required />
+            </div>
+
+            <div class="field">
+              <label for="txtApellido">Apellido:</label>
+              <input type="text" id="txtApellido" placeholder="Ingrese el apellido del estudiante" required />
+            </div>
+
+            <div class="field">
+              <label for="txtCorreo">Correo:</label>
+              <input type="email" id="txtCorreo" placeholder="Ingrese el correo del estudiante" />
+            </div>
+
+            <div class="field">
+              <label for="txtCarrera">Carrera:</label>
+              <input type="text" id="txtCarrera" placeholder="Ingrese la carrera del estudiante" />
+            </div>
+
+            <div class="field">
+              <label for="txtFechaNac">Fecha Nacimiento:</label>
+              <input type="date" id="txtFechaNac" />
+            </div>
+
+            <div class="field buttons">
+              <!-- CAMBIO CLAVE: type="button" -->
+              <button id="btnAdd" class="btn btn-success" type="button">Agregar</button>
+              <button id="btnCancel" class="btn btn-success" type="button">Cancelar</button>
+            </div>
           </div>
-          <div class="field">
-            <label for="txtApellido">Apellido:</label>
-            <input
-              type="text"
-              id="txtApellido"
-              placeholder="Ingrese el apellido del estudiante"
-              required
-            />
-          </div>
-          <div class="field">
-            <label for="txtCorreo">Correo:</label>
-            <input
-              type="email"
-              id="txtCorreo"
-              placeholder="Ingrese el correo del estudiante"
-            />
-          </div>
-          <div class="field">
-            <label for="txtCarrera">Carrera:</label>
-            <input
-              type="text"
-              id="txtCarrera"
-              placeholder="Ingrese la carrera del estudiante"
-            />
-          </div>
-          <div class="field buttons">
-            <button id="btnAdd" class="btn btn-success" type="submit">
-              Agregar
-            </button>
-            <button id="btnCancel" class="btn btn-success" type="button">
-              Cancelar
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
 
       <!-- controles -->
       <div class="card">
         <div class="field">
-          <input
-            type="text"
-            id="txtSearch"
-            placeholder="Buscar estudiante por nombre"
-          />
-
-          <button id="btnLoad" class="btn btn-primary" type="button">
-            Consultar
-          </button>
-          <button id="btnclean" class="btn btn-secondary" type="button">
-            Limpiar
-          </button>
+          <div class="input-with-action">
+            <input type="text" id="txtSearch" placeholder="Buscar estudiante por nombre" />
+            <button id="btnClear" class="btn btn-secondary btn-inline" type="button" aria-label="Limpiar" title="Limpiar">
+              &times;
+            </button>
+          </div>
+          <button id="btnLoad" class="btn btn-primary" type="button">Consultar</button>
         </div>
       </div>
 
@@ -85,7 +76,6 @@
           <table id="tblEstudiantes">
             <thead>
               <tr>
-                <!-- <th>ID</th> -->
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Correo</th>
@@ -93,11 +83,12 @@
                 <th>Acciones</th>
               </tr>
             </thead>
-            <tbody id="tbodyEstudiantes"></tbody>
+            <tbody id="tbodyStudents"></tbody>
           </table>
         </div>
       </div>
     </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./app.js" type="module"></script>
   </body>
 </html>
