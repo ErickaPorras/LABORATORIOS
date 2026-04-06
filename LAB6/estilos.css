@@ -207,9 +207,7 @@ table button {
   background: var(--accent3);
   color: #05323A;
 }
-/*
-DRY (Don't Repeat Yourself) - Evitar la repetición de código es una buena práctica en programación. En este caso, las clases `.btnEliminar` y `.btnActualizar` comparten muchas propiedades CSS similares. Para evitar la repetición, podríamos crear una clase base para los botones y luego extenderla para cada tipo específico. Aquí hay un ejemplo de cómo podríamos hacerlo:
-*/
+
 
 .field.buttons{
   flex-direction: row;
@@ -248,4 +246,8 @@ DRY (Don't Repeat Yourself) - Evitar la repetición de código es una buena prá
 
 .btn-inline:active {
   transform: translateY(-50%);
+}
+td:last-child {
+  display: flex;
+  gap: 5px;
 }

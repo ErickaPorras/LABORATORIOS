@@ -1,11 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
-</head>
-<body>
-    Contacto
+  <meta charset="UTF-8">
+  <title>Contacto - Hospital Esperanza</title>
+  <link rel="stylesheet" href="estilos2.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ 
+   
+  <header>
+    <h1>Hospital Esperanza</h1>
+    <p>Contáctanos</p>
+  </header>
+
+  <div class="container">
+
+    <h2>Información de Contacto</h2>
+
+    <div class="info">
+      <strong> Teléfono:</strong> 2222-3333
+    </div>
+
+    <div class="info">
+      <strong> Correo:</strong> hospitalesperanza@gmail.com
+    </div>
+
+    <div class="info">
+      <strong> Dirección:</strong> San José, Costa Rica
+    </div>
+
+    <div class="info">
+      <strong> Horario:</strong> Lunes a Viernes 7:00am - 4:00pm
+    </div>
+
+    <!-- FORMULARIO -->
+    <form id="formContacto">
+      <h3>Solicitar información</h3>
+
+      <input type="text" placeholder="Nombre completo" required>
+      <input type="email" placeholder="Correo electrónico" required>
+      <textarea rows="4" placeholder="Escribe tu consulta..." required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+<a href="http://127.0.0.1:5500/PROYECTO/">
+  <button class="btn-volver"> Volver al Inicio</button>
+</a>
+  </div>
+
+  <script>
+    document.getElementById("formContacto").addEventListener("submit", function(e){
+      e.preventDefault();
+      alert("Solicitud enviada correctamente ¡Gracias por contactarnos!");
+      this.reset();
+    });
+  </script>
+
 </body>
 </html>
+

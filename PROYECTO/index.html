@@ -1,67 +1,144 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Hospital Esperanza - Citas Médicas</title>
-    <link rel="stylesheet" href="estilos.css">
-    
-     
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hospital Esperanza - Citas</title>
+  <link rel="stylesheet" href="./estilos.css" />
 </head>
 
 <body>
-
-<header>
+  <!-- HEADER -->
+  <header>
     <h1>HOSPITAL ESPERANZA</h1>
     <p>Sistema de Gestión de Citas Médicas</p>
-</header>
+  </header>
 
-<nav>
-    <a href="#">Inicio</a>
+  <!-- NAV -->
+  <nav>
+    <a href="inicio.html">Inicio</a>
     <a href="Especialidades.html">Especialidades</a>
-    <a href="Agendar Citas.html">Agendar Citas</a>
+    <a href="Citas.html">Citas</a>
     <a href="Contacto.html">Contacto</a>
-</nav>
+  </nav>
 
-<div class="container">
-    <h2>Agendar Cita Médica</h2>
+  <div class="container">
+    <!-- TITULO -->
+    <div class="header">
+      <h2 class="header-title">Gestión de Citas</h2>
+      <p class="header-subtitle">Registro y consulta</p>
+    </div>
 
-    <form>
-        <div class="form-group">
-            <label>Nombre Completo</label>
-            <input type="text" placeholder="Ingrese su nombre">
-        </div>
+    <!-- FORMULARIO -->
+    <div class="card">
+      <h2>Agendar Cita Médica</h2>
 
-        <div class="form-group">
-            <label>Número de Identificación</label>
-            <input type="text" placeholder="Ingrese su cédula">
-        </div>
+      <form id="formCita">
+        <div class="controls">
+          <div class="field">
+            <label for="nombre_completo">Nombre Completo:</label>
+            <input type="text" id="nombre_completo" required />
+          </div>
 
-        <div class="form-group">
-            <label>Especialidad</label>
-            <select>
-                <option>Medicina General</option>
-                <option>Pediatría</option>
-                <option>Cardiología</option>
-                <option>Ginecología</option>
-                <option>Dermatología</option>
+          <div class="field">
+            <label for="id">cedula:</label>
+            <input type="text" id="id" required />
+          </div>
+
+          <div class="field">
+            <label for="especialidad">Especialidad:</label>
+            <select id="especialidad">
+              <option>Medicina General</option>
+              <option>Pediatría</option>
+              <option>Cardiología</option>
+              <option>Ginecología</option>
+              <option>Dermatología</option>
+              <option>Neurología</option>
+              <option>Gastroenterología</option>
+              <option>Ortopedia</option>
+              <option>Oftalmología</option>
+              <option>Psiquiatría</option>
+              <option>Endocrinología</option>
+              <option>Psicología</option>
+
             </select>
+          </div>
+
+          <div class="field">
+            <label for="fecha_cita">Fecha:</label>
+            <input type="date" id="fecha_cita" required />
+          </div>
+
+          <div class="field">
+            <label for="hora_cita">Hora :</label>
+            <input type="time" id="hora_cita" required />
+          </div>
+
+          <div class="field buttons">
+            <button id="btnAdd" class="btn btn-success" type="submit">
+              Guardar
+            </button>
+            <button id="btnCancel" class="btn btn-secondary" type="reset">
+              Cancelar
+            </button>
+          </div>
+          <input type="hidden" id="id" />
         </div>
+      </form>
+    </div>
 
-        <div class="form-group">
-            <label>Fecha de la Cita</label>
-            <input type="date">
+    <!-- BUSQUEDA -->
+    <div class="card">
+      <div class="field">
+        <div class="input-with-action">
+          <input type="text" id="txtSearch" placeholder="Buscar estudiante por nombre" />
+          <button id="btnClear" class="btn btn-secondary btn-inline" type="button" aria-label="Limpiar" title="Limpiar">
+            &times;
+          </button>
+
         </div>
+        <button id="btnLoad" class="btn btn-primary" type="button">
+          Consultar
+        </button>
 
-        <div class="form-group">
-            <label>Hora</label>
-            <input type="time">
-        </div>
+        </button>
+      </div>
+    </div>
 
-        <button type="submit">Reservar Cita</button>
-    </form>
-</div>
+    <!-- TABLA -->
+    <div class="card">
+      <div class="table-wrap">
+        <table id="tblpacientes">
+          <thead>
+            <tr>
+              
+              <th>Cédula</th>
+              <th>Nombre Completo</th>
+              <th>Especialidad</th>
+              <th>Fecha Cita</th>
+              <th>Hora Cita</th>
+              <th>         </th>
+              <th>Acciones</th>
 
+            </tr>
+          </thead>
 
+          <tbody id="tbodypacientes">
 
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="./app.js"></script>
 </body>
+
 </html>
+ <input type="hidden" id="txtId">
+ <footer>
+   <p>&copy; Hospital Esperanza. Todos los derechos reservados.</p>
+ </footer>

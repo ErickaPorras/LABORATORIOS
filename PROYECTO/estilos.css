@@ -1,72 +1,257 @@
- body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f8fb;
-        }
+/* =========================
+   VARIABLES (igual)
+========================= */
+:root {
+  --bg: #0b3c5d;
+  --accent: #10CFC8;
+  --accent2: #EB6763;
+  --accent3: #8dbaee;
+  --card: #ffffff;
+  --muted: #64748b;
+  --border: #e5e7eb;
+}
 
-        header {
-            background-color: #0b3c5d;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+/* =========================
+   GENERAL
+========================= */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f8fb;
+}
 
-        nav {
-            background-color: #1f6f8b;
-            padding: 10px;
-            text-align: center;
-        }
+/* =========================
+   HEADER Y NAV
+========================= */
+header {
+  background-color: var(--bg);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
+nav {
+  background-color: #1f6f8b;
+  padding: 12px;
+  text-align: center;
+}
 
-        .container {
-            width: 60%;
-            margin: 30px auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-        }
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: 0.3s;
+}
 
-        h2 {
-            text-align: center;
-            color: #0b3c5d;
-        }
+nav a:hover {
+  color: var(--accent);
+}
 
-        .form-group {
-            margin-bottom: 15px;
-        }
+/* =========================
+   CONTENEDOR
+========================= */
+.container {
+   text: center;
+  margin: 30px auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.08);
+}
 
-        label {
-            font-weight: bold;
-        }
+/* =========================
+   TITULOS
+========================= */
+.header {
+  text-align: center;
+  margin-bottom: 25px;
+}
 
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+.header-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--bg);
+}
 
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #0b3c5d;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.header-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+}
 
-        button:hover {
-            background-color: #145374;
-        }
+/* =========================
+   FORMULARIO
+========================= */
+.form-group {
+  margin-bottom: 15px;
+}
 
-       
+label {
+  font-weight: bold;
+  color: var(--bg);
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  transition: 0.2s;
+}
+
+input:focus, select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+/* =========================
+   BOTONES GENERALES
+========================= */
+button {
+  padding: 10px;
+  background-color: var(--bg);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #145374;
+}
+
+/* =========================
+   BOTONES REDONDOS
+========================= */
+.botones {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.botones button {
+  background-color: #1e40af;
+  padding: 10px 18px;
+  margin: 5px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.botones button:active {
+  transform: scale(0.95);
+}
+
+/* =========================
+   TABLA
+========================= */
+.table-wrap {
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-top: 15px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 760px;
+}
+
+/* HEADER TABLA */
+thead th {
+  background: var(--bg);
+  color: var(--card);
+  text-align: left;
+  padding: 12px;
+  position: sticky;
+  top: 0;
+}
+
+/* FILAS */
+tbody tr {
+  transition: 0.2s;
+}
+
+tbody tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* CELDAS */
+tbody td {
+  padding: 12px;
+  border-top: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+/* =========================
+   BOTONES TABLA
+========================= */
+table td:last-child {
+  display: flex;
+  gap: 6px;
+}
+
+/* ELIMINAR */
+.btnEliminar {
+  background:  #0b3c5d;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+/* EDITAR */
+.btnEditar {
+  background:  #0b3c5d;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 6px 10px;
+}
+
+/* =========================
+   INPUT BUSQUEDA
+========================= */
+.input-with-action {
+  position: relative;
+  width: 85%;
+}
+
+.input-with-action input {
+  width: 100%;
+  padding-right: 80px;
+}
+
+.btn-inline {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-40%);
+  width: 30px;
+  height: 25px;
+  border-radius: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+  background:  #0b3c5d;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+footer p {
+  color: #ffffff;
+  font-size: 30px;
+  background:  #0b3c5d;
+  margin: 20px;
+  text-align: center;
+ 
+}

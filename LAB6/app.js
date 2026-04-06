@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function limpiarFormulario() {
-    txtId.value = "";
+    txtId_cedula.value = "";
     txtNombre.value = "";
     txtApellido.value = "";
     txtCorreo.value = "";
@@ -193,6 +193,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // cargar al inicio
   consultarEstudiantes();
-
-  
 });
+
+async function guardarPaciente() {
+  const pacientes = {
+    nombre_completo: txtnombre_completo.value.trim(),
+    especialidad: txtespecialidad.value.trim(),
+    fecha_cita: txtfecha_cita.value.trim(),
+    hora_cita: txthora_cita.value.trim(),
+  }};
