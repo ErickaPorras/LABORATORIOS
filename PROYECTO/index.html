@@ -9,45 +9,54 @@
 </head>
 
 <body>
+
   <!-- HEADER -->
   <header>
-    <h1>HOSPITAL ESPERANZA</h1>
+    <h1>HOSPITAL ESPERANZA</h1>   <!-- TITULO DE LA PAGINA -->
     <p>Sistema de Gestión de Citas Médicas</p>
   </header>
 
-  <!-- NAV -->
+  <!-- MI APARTADO CON SUS PESTAÑAS U OPCIONES RESPECTIVAS -->
   <nav>
     <a href="inicio.html">Inicio</a>
-    <a href="Especialidades.html">Especialidades</a>
+    <a href="Especialidades.html">Especialidades</a> 
     <a href="Citas.html">Citas</a>
     <a href="Contacto.html">Contacto</a>
   </nav>
 
-  <div class="container">
+  <div class="container"> <!-- EN EL CONTAINER ENCONTRAMOS UN SUBTITULO -->
+
     <!-- TITULO -->
     <div class="header">
       <h2 class="header-title">Gestión de Citas</h2>
       <p class="header-subtitle">Registro y consulta</p>
     </div>
 
+<!--INICIAMOS CON EL FORMULARIO PARA AGENDAR LAS CITAS, CON SUS RESPECTIVOS CAMPOS Y BOTONES-->
     <!-- FORMULARIO -->
     <div class="card">
       <h2>Agendar Cita Médica</h2>
 
       <form id="formCita">
         <div class="controls">
+
+          <!-- INPUT OCULTO PARA EDITAR EL ID INGRESADO-->
+          <input type="hidden" id="txtId">
+
+<!-- SE CONTINUA CON LOS CAMPOS PARA INGRESAR LOS DATOS DE LA CITA, COMO EL NOMBRE COMPLETO, CEDULA, ESPECIALIDAD, FECHA Y HORA, ASI COMO LOS BOTONES PARA GUARDAR O CANCELAR LA CITA AGENDADA. -->
+
           <div class="field">
-            <label for="nombre_completo">Nombre Completo:</label>
+            <label>Nombre Completo:</label>
             <input type="text" id="nombre_completo" required />
           </div>
 
           <div class="field">
-            <label for="id">cedula:</label>
-            <input type="text" id="id" required />
+            <label>Cédula:</label>
+            <input type="text" id="cedula" required />
           </div>
 
           <div class="field">
-            <label for="especialidad">Especialidad:</label>
+            <label>Especialidad:</label>
             <select id="especialidad">
               <option>Medicina General</option>
               <option>Pediatría</option>
@@ -61,84 +70,84 @@
               <option>Psiquiatría</option>
               <option>Endocrinología</option>
               <option>Psicología</option>
-
             </select>
           </div>
 
           <div class="field">
-            <label for="fecha_cita">Fecha:</label>
+            <label>Fecha:</label>
             <input type="date" id="fecha_cita" required />
           </div>
 
           <div class="field">
-            <label for="hora_cita">Hora :</label>
+            <label>Hora:</label>
             <input type="time" id="hora_cita" required />
           </div>
 
+<!-- BOTONES PARA GUARDAR O CANCELAR LA CITA AGENDADA -->
           <div class="field buttons">
             <button id="btnAdd" class="btn btn-success" type="submit">
               Guardar
             </button>
+
             <button id="btnCancel" class="btn btn-secondary" type="reset">
               Cancelar
             </button>
           </div>
-          <input type="hidden" id="id" />
+
         </div>
       </form>
     </div>
 
-    <!-- BUSQUEDA -->
+    <!-- PANEL DE BUSQUEDA DEL PACIENTE POR NOMBRE POR MEDI DE LA OPCION INPUT WITH ACTION  -->
     <div class="card">
       <div class="field">
+
         <div class="input-with-action">
-          <input type="text" id="txtSearch" placeholder="Buscar estudiante por nombre" />
-          <button id="btnClear" class="btn btn-secondary btn-inline" type="button" aria-label="Limpiar" title="Limpiar">
+          <input type="text" id="txtSearch" placeholder="Buscar por nombre" />
+
+          <button id="btnClear" class="btn btn-secondary btn-inline" type="button">
             &times;
           </button>
-
         </div>
+<!-- BOTON PARA CONSULTAR LOS PACIENTES REGISTRADOS EN LA TABLA -->
         <button id="btnLoad" class="btn btn-primary" type="button">
           Consultar
         </button>
 
-        </button>
       </div>
     </div>
 
-    <!-- TABLA -->
+    <!-- INICIO DEL CUERPO DE LA TABLA CON EL ENCABEADO CON LA INFORMACION DEL PACIENTE -->
     <div class="card">
       <div class="table-wrap">
         <table id="tblpacientes">
           <thead>
             <tr>
-              
               <th>Cédula</th>
               <th>Nombre Completo</th>
               <th>Especialidad</th>
-              <th>Fecha Cita</th>
-              <th>Hora Cita</th>
-              <th>         </th>
+              <th>Fecha</th>
+              <th>Hora</th>
               <th>Acciones</th>
-
             </tr>
           </thead>
 
           <tbody id="tbodypacientes">
-
           </tbody>
         </table>
       </div>
     </div>
+
   </div>
+
+  <!-- FOOTER EL CUAL ES PIE DE LA PAGINA INFERIOR DE LA PAGINA Y SE LE AGREGA EL TEXTO INFORMATIVO -->
+  <footer>
+    <p>&copy; Hospital Esperanza. Todos los derechos reservados.</p>
+  </footer>
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script type="module" src="./app.js"></script>
-</body>
 
+</body>
 </html>
- <input type="hidden" id="txtId">
- <footer>
-   <p>&copy; Hospital Esperanza. Todos los derechos reservados.</p>
- </footer>

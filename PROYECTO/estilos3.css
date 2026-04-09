@@ -1,0 +1,115 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f8fb;
+    }
+
+    header {
+      background: #0b3c5d;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .contenedor {
+      width: 80%;
+      margin: 30px auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+
+    /* BOTONES (TABS) */
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #dbe9f4;
+      cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .tab-btn:hover {
+      background: #0b3c5d;
+      color: white;
+    }
+
+    .tab-btn.active {
+      background: #0b3c5d;
+      color: white;
+    }
+
+    /* CONTENIDO */
+    .tab-content {
+      display: none;
+      animation: fade 0.5s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    .card {
+      background: #f9fbfd;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .card h3 {
+      margin: 0;
+      color: #0b3c5d;
+    }
+
+    .card p {
+      margin: 5px 0 0;
+      color: #555;
+    }
+
+ .btn-volver {
+  background: linear-gradient(135deg, #0b3c5d, #1d6fa5);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.btn-volver:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #072c45, #155a85);
+}
+
+/* Click */
+.btn-volver:active {
+  transform: scale(0.95);
+}

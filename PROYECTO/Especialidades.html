@@ -1,12 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Especialidades</title>
-    <link rel="stylesheet" href="estilos.css">
-</head>
-<body>
-    Especialidades 
+  <meta charset="UTF-8">
+  <title>Especialidades Médicas</title>
+    <link rel="stylesheet" href="estilos3.css">
+  
+
+<header>
+  <h1>Hospital Esperanza</h1>
+  <p>Especialidades Médicas</p>
+</header>
+
+<div class="contenedor">
+
+  <!-- BOTONES -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="mostrarTab('cardio')">Cardiología</button>
+    <button class="tab-btn" onclick="mostrarTab('pediatria')">Pediatría</button>
+    <button class="tab-btn" onclick="mostrarTab('dermatologia')">Dermatología</button>
+    <button class="tab-btn" onclick="mostrarTab('neurologia')">Neurología</button>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div id="cardio" class="tab-content active">
+    <div class="card">
+      <h3>Chequeo Cardíaco</h3>
+      <p>Evaluación completa del corazón y presión arterial.</p>
+    </div>
+    <div class="card">
+      <h3>Electrocardiograma</h3>
+      <p>Estudio del ritmo cardíaco.</p>
+    </div>
+  </div>
+
+  <div id="pediatria" class="tab-content">
+    <div class="card">
+      <h3>Control Infantil</h3>
+      <p>Seguimiento del crecimiento y desarrollo del niño.</p>
+    </div>
+    <div class="card">
+      <h3>Vacunación</h3>
+      <p>Aplicación de vacunas según edad.</p>
+    </div>
+  </div>
+
+  <div id="dermatologia" class="tab-content">
+    <div class="card">
+      <h3>Tratamiento de la piel</h3>
+      <p>Atención de acné, manchas y enfermedades cutáneas.</p>
+    </div>
+  </div>
+
+  <div id="neurologia" class="tab-content">
+    <div class="card">
+      <h3>Evaluación Neurológica</h3>
+      <p>Diagnóstico de trastornos del sistema nervioso.</p>
+    </div>
+  </div>
+<a href="http://127.0.0.1:5500/PROYECTO/">
+  <button class="btn-volver"> Volver al Inicio</button>
+</a>
+</div>
+
+<script>
+  function mostrarTab(tabId) {
+    // Ocultar todos
+    const contenidos = document.querySelectorAll(".tab-content");
+    contenidos.forEach(c => c.classList.remove("active"));
+
+    // Quitar active de botones
+    const botones = document.querySelectorAll(".tab-btn");
+    botones.forEach(b => b.classList.remove("active"));
+
+    // Mostrar seleccionado
+    document.getElementById(tabId).classList.add("active");
+
+    // Activar botón
+    event.target.classList.add("active");
+  }
+</script>
+
 </body>
 </html>

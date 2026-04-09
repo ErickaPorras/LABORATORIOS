@@ -1,248 +1,211 @@
-// importamos el cliente de Supabase
 import { supabase } from "./supabase.js";
 
+// =====================================
+// REFERENCIAS A ELEMENTOS DEL DOM
+// =====================================
+//AQUI OBTENEMOS LOS ELEMENTOS DEL HTML USANDO GETELEMENTBYID,
+ //ESTO NOS PERMITE MANIPULARLOS CON JAVASCRIPT (LEER DATOS, ESCRIBIR, ESCUCHAR EVENTOS, ETC.)
 
+// BOTONES PRINCIPALES DEL SISTEMA 
+const btnClear = document.getElementById("btnClear");   //BOTONPARA LIMPIAR LA BUSQUEDA DE LOS PACIENTES REGISTRADOS EN LA TABLA
 
-//****************************************
-// Esperar a que cargue el DOM
-//****************************************
-document.addEventListener("DOMContentLoaded", () => {
-    Swal.fire("SweetAlert2 is working!");
-  });
-//****************************************
-// Referencias del DOM
-//****************************************
-const btnClear = document.getElementById("btnClear");
-const btnAdd = document.getElementById("btnAdd");
-const btnCancel = document.getElementById("btnCancel");
-const btnLoad = document.getElementById("btnLoad");
+const btnAdd = document.getElementById("btnAdd");       // BOTON PARA GUARDAR O ACTUALIZAR LOS DATOS DEL PACIENTE EN LA BASE DE DATOS
+const btnCancel = document.getElementById("btnCancel"); // BOTON PARA LIMPIAR FORMULARIO
+const btnLoad = document.getElementById("btnLoad");     // BOTON PARA CONSULTAR DATOS DE LOS PACIENTES REGISTRADOS EN LA BASE DE DATOS Y MOSTRARLOS EN LA TABLA
 
-const txtSearch = document.getElementById("txtSearch");
+// ESPACIO DE BUSQUEDA DE LOS PACIENTES REGISTRADOS EN LA BASE DE DATOS
+const txtSearch = document.getElementById("txtSearch"); // SE UTILIA UN INPUT PARA REALIAR LA BUSQUEDA
 
-const id = document.getElementById("id");
-const txtnombre_completo = document.getElementById("txtnombre_completo");
-const txtespecialidad = document.getElementById("txtespecialidad");
-const txtfecha_cita = document.getElementById("txtfecha_cita");
-const txthora_cita = document.getElementById("txthora_cita");
-const txtacciones = document.getElementById("txtacciones");
+// ESPACIOS DEL FORMULARIO
+const txtId = document.getElementById("txtId");            
+const nombre = document.getElementById("nombre_completo");  
+const cedula = document.getElementById("cedula");           
+const especialidad = document.getElementById("especialidad"); 
+const fecha = document.getElementById("fecha_cita");        
+const hora = document.getElementById("hora_cita");          
 
-const tbody = document.getElementById("tbodypacientes");
-const tituloForm = document.getElementById("tituloForm");
+// TABLA EN DONDE SE MUESTRA EL CUERPO DE LOS PACIENTES REGISTRADOS EN LA BASE DE DATOS
+const tbody = document.getElementById("tbodypacientes"); 
 
-const form = document.getElementById("formpacientes");
+// FORMULARIO PRINCIPAL
+const form = document.getElementById("formCita"); 
 
-// evitar recarga del form
-if (form) {
-  form.addEventListener("submit", (e) => e.preventDefault());
-}
+//=====================================
+// EVENTOS
+//=====================================
+document.addEventListener("DOMContentLoaded", () => {   //MENSAJE DE BIENENIDA AL SISTEMA
+  Swal.fire("Bienvenido, sistema listo para usar");
+  consultarpacientes();
+});
 
-//****************************************
-// Eventos
-//****************************************
-btnLoad?.addEventListener("click", consultarpacientes);
-btnAdd?.addEventListener("click", guardarPaciente);
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  guardarPaciente();
+});
 
-btnClear?.addEventListener("click", async () => {
-  if (txtSearch) txtSearch.value = "";
+btnLoad.addEventListener("click", consultarpacientes);
+
+btnClear.addEventListener("click", async () => {
+  txtSearch.value = "";
   await consultarpacientes();
 });
 
-btnCancel?.addEventListener("click", limpiarFormulario);
+btnCancel.addEventListener("click", limpiarFormulario);
 
- // eliminar
-  tbody.addEventListener("click", async (event) => {
-    const target = event.target;
-    if (!target.classList.contains("btnEliminar")) return;
+//=====================================
+// CLICK EN TABLA (EDITAR / ELIMINAR)
+//=====================================
+tbody.addEventListener("click", async (event) => {
+  const target = event.target;
 
-    const id = target.getAttribute("data-id");
-    await eliminarPaciente(id);
-  });
+  // ELIMINAR
+  if (target.classList.contains("btnEliminar")) {
+    const id = target.dataset.id;
+    eliminarPaciente(id);
+  }
 
-  // editar
-  tbody.addEventListener("click", async (event) => {
-    const target = event.target;
-    if (!target.classList.contains("btnEditar")) return;
-
-    const id = target.getAttribute("data-id");
+  // EDITAR
+  if (target.classList.contains("btnEditar")) {
+    const id = target.dataset.id;
 
     const { data, error } = await supabase
       .from("pacientes")
-      .select("id,nombre_completo,especialidad,fecha_cita,hora_cita,acciones")
+      .select("*")
       .eq("id", id)
       .single();
 
     if (error) {
-      console.error(error);
-      swal.fire("Error al cargar paciente");
+      Swal.fire("Error al cargar datos");
       return;
     }
 
-    txtid.value = data.id;
-    txtnombre_completo.value = data.nombre_completo;
-    txtespecialidad.value = data.especialidad;
-    txtfecha_cita.value = data.fecha_cita;
-    txthora_cita.value = data.hora_cita;
+    txtId.value = data.id;
+    nombre.value = data.nombre_completo;
+    cedula.value = data.id;
+    especialidad.value = data.especialidad;
+    fecha.value = data.fecha_cita;
+    hora.value = data.hora_cita;
 
     btnAdd.textContent = "Actualizar";
-    tituloForm.textContent = "Editar paciente";
-  });
+  }
+});
 
-if (tbody) {
-  tbody.addEventListener("click", async (event) => {
-    const target = event.target;
-    if (!(target instanceof HTMLElement)) return;
-
-    if (target.classList.contains("btnEliminar")) {
-      const id = target.getAttribute("data-id");
-      if (id) await eliminarpaciente(id);
-      return;
-    }
-
-    if (target.classList.contains("btnEditar")) {
-      const id = target.getAttribute("data-id");
-      if (!id) return;
-
-      const { data, error } = await supabase
-        .from("pacientes")
-        .select("id,nombre_completo,especialidad,fecha_cita,hora_cita,acciones")
-        .eq("id", id)
-        .single();
-
-      if (error) {
-        console.error(error);
-        Swal.fire("Error al cargar paciente");
-        return;
-      }
-
-      id.value = data.id ?? "";
-      txtnombre_completo.value = data.nombre_completo ?? "";
-      txtespecialidad.value = data.especialidad ?? "";
-      txtfecha_cita.value = data.fecha_cita ?? "";
-      txthora_cita.value = data.hora_cita ?? "";
-      txtacciones.value = data.acciones ?? "";
-
-      btnAdd.textContent = "Actualizar";
-      tituloForm.textContent = "Editar Paciente";
-    }
-  });
-}
-
-//****************************************
-// Funciones
-//****************************************
+//=====================================
+// CONSULTAR
+//=====================================
 async function consultarpacientes() {
-  const search = txtSearch?.value.trim() ?? "";
+  let query = supabase.from("pacientes").select("*");
 
-  let query = supabase
-    .from("pacientes")
-    .select("id,nombre_completo,especialidad,fecha_cita,hora_cita,acciones");
+  const search = txtSearch.value.trim();
 
   if (search) {
-    query = query.or(
-      `nombre_completo.ilike.%${search}%,especialidad.ilike.%${search}%`,
-    );
+    query = query.or(`nombre_completo.ilike.%${search}%`);
   }
 
   const { data, error } = await query;
 
   if (error) {
-    console.error(error);
-    Swal.fire("Error cargando pacientes", error.message, "error");
+    Swal.fire("Error al cargar");  //MENSAJE DE ERROR SI NO SE PUEDEN CARGAR LOS DATOS DE LOS PACIENTES REGISTRADOS EN LA BASE DE DATOS
     return;
   }
 
-  if (tbody) {
-    tbody.innerHTML = "";
-    data.forEach((r) => {
-      const tr = document.createElement("tr");
+  tbody.innerHTML = "";
 
-      tr.innerHTML = `
-          <td>${r.id ?? ""}</td>
-          <td>${r.nombre_completo ?? ""}</td>
-          <td>${r.especialidad ?? ""}</td>
-          <td>${r.fecha_cita ?? ""}</td>
-          <td>${r.hora_cita ?? ""}</td>
-          <td>${r.acciones ?? ""}</td>
-          <td>
-            <button class="btnEditar" data-id="${r.id}">Editar</button>
-            <button class="btnEliminar" data-id="${r.id}">Eliminar</button>
-          </td>
-        `;
+  data.forEach((r) => {
+    const tr = document.createElement("tr");
 
-      tbody.appendChild(tr);
-    });
-  }
+    tr.innerHTML = `
+      <td>${r.id}</td>
+      <td>${r.nombre_completo}</td>
+      <td>${r.especialidad}</td>
+      <td>${r.fecha_cita}</td>
+      <td>${r.hora_cita}</td>
+      <td>
+        <button class="btnEditar" data-id="${r.id}">Editar</button>
+        <button class="btnEliminar" data-id="${r.id}">Eliminar</button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+  });
 }
 
+//=====================================
+// GUARDAR / EDITAR INFORMACION DEL PACIENTE
+//=====================================
 async function guardarPaciente() {
-  const pacientes = {
-    id: id.value.trim(),
-    nombre_completo: txtnombre_completo.value.trim(),
-    especialidad: txtespecialidad.value.trim(),
-    fecha_cita: txtfecha_cita.value.trim(),
-    hora_cita: txthora_cita.value.trim(),
-    acciones: txtacciones.value.trim(),
+  const data = {
+    id: cedula.value.trim(),
+    nombre_completo: nombre.value.trim(),
+    especialidad: especialidad.value,
+    fecha_cita: fecha.value,
+    hora_cita: hora.value,
   };
-  await supabase.from("pacientes").insert([pacientes])
-    
 
-  if (
-    !pacientes.id ||
-    !pacientes.nombre_completo ||
-    !pacientes.especialidad ||
-    !pacientes.fecha_cita ||
-    !pacientes.hora_cita
-  ) {
-    Swal.fire("Por favor, complete todos los campos");
+  if (!data.id || !data.nombre_completo) {
+    Swal.fire("Complete los campos");
     return;
   }
 
   let error;
 
-  if (id.value) {
+  if (txtId.value) {
+    // EDITAR
     ({ error } = await supabase
       .from("pacientes")
-      .update(pacientes)
-      .eq("id", id.value));
+      .update(data)
+      .eq("id", txtId.value));
   } else {
-    ({ error } = await supabase.from("pacientes").insert([pacientes]));
+    // NUEVO
+    ({ error } = await supabase.from("pacientes").insert([data]));
   }
 
   if (error) {
-    console.error(error);
-    Swal.fire("Error guardando paciente");
+    Swal.fire("Error al guardar");
     return;
   }
 
-  Swal.fire("Paciente guardado exitosamente");
+  Swal.fire("Guardado correctamente ");
+
   limpiarFormulario();
   consultarpacientes();
 }
 
+//=====================================
+// ELIMINAR EL PACIENTE
+//=====================================
 async function eliminarPaciente(id) {
-  if (!confirm("¿Está seguro de eliminar este paciente?")) return;
+  const confirmacion = await Swal.fire({
+    title: "¿Eliminar?",
+    showCancelButton: true,
+    confirmButtonText: "Sí",
+  });
 
-  const { error } = await supabase.from("pacientes").delete().eq("id", id);
+  if (!confirmacion.isConfirmed) return;
+
+  const { error } = await supabase
+    .from("pacientes")
+    .delete()
+    .eq("id", id);
 
   if (error) {
-    console.error(error);
-    Swal.fire("Error al eliminar paciente");
+    Swal.fire("Error al eliminar");
   } else {
+    Swal.fire("Eliminado");
     consultarpacientes();
   }
 }
 
+//=====================================
+// LIMPIAR EL FORMULARIO
+//=====================================
 function limpiarFormulario() {
-  id.value = "";
-  txtnombre_completo.value = "";
-  txtespecialidad.value = "";
-  txtfecha_cita.value = "";
-  txthora_cita.value = "";
-  txtacciones.value = "";
+  txtId.value = "";
+  nombre.value = "";
+  cedula.value = "";
+  especialidad.value = "";
+  fecha.value = "";
+  hora.value = "";
 
-  btnAdd.textContent = "Agregar";
-  tituloForm.textContent = "Agregar Paciente";
+  btnAdd.textContent = "Guardar";
 }
-
-// cargar al inicio
-consultarpacientes();
