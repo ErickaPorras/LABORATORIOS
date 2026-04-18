@@ -1,0 +1,250 @@
+:root {
+  --bg: #0B2D39;
+  --accent: #10CFC8;
+  --accent2: #EB6763;
+  --accent3: #8dbaee;
+  --card: #ffffff;
+  --muted: #64748b;
+  --border: #e5e7eb;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6f7fb;
+  color: #0f172a;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.header {
+  border-radius: 16px;
+  padding: 18px;
+  background: var(--bg);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
+  border: 2px solid var(--accent);
+}
+
+.header-title {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 6px 0 0;
+}
+
+.header-subtitle {
+  font-size: 14px;
+  opacity: .92;
+  margin: 6px 0 0;
+}
+
+.card {
+  margin-top: 14px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 18px rgba(2, 6, 23, .06);
+  padding: 14px;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: end;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+  flex: 1;
+}
+
+.input-with-action {
+  position: relative;
+  width: 100%;
+}
+
+.input-with-action input {
+  width: 100%;
+  padding-right: 88px;
+  box-sizing: border-box;
+}
+
+.btn-inline {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-inline:active {
+  transform: translateY(-50%);
+}
+
+label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+input,
+select {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  outline: none;
+  font-size: 14px;
+  background: #fff;
+}
+
+.btn {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 14px;
+  transition: transform .04s ease;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #05323A;
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #0f172a;
+  border-color: var(--border);
+}
+
+.btn-danger {
+  background: var(--accent2);
+  color: #fff;
+}
+
+/* Status */
+.status {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+  color: #0f172a;
+  background: #fff;
+}
+
+.status-muted {
+  color: var(--muted);
+}
+
+.status-error {
+  border-color: #fecaca;
+  background: #fff1f2;
+  color: #9f1239;
+}
+
+/* Table */
+.table-wrap {
+  overflow: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-top: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 760px;
+}
+
+thead th {
+  background: var(--bg);
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tbody td {
+  padding: 10px;
+  border-top: 1px solid var(--border);
+}
+
+tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.footer {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(16, 207, 200, .18);
+  color: #05323A;
+  border: 1px solid rgba(16, 207, 200, .45);
+  font-weight: 800;
+  font-size: 12px;
+}
+
+table button {
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 12px;
+  transition: transform .04s ease;
+  white-space: nowrap;
+}
+
+.btnEliminar {
+  background: var(--accent2);
+  color: #fff;
+}
+
+.btnActualizar {
+  background: var(--accent3);
+  color: #05323A;
+}
+/*
+DRY (Don't Repeat Yourself) - Evitar la repetición de código es una buena práctica en programación. En este caso, las clases `.btnEliminar` y `.btnActualizar` comparten muchas propiedades CSS similares. Para evitar la repetición, podríamos crear una clase base para los botones y luego extenderla para cada tipo específico. Aquí hay un ejemplo de cómo podríamos hacerlo:
+*/
+
+.field.buttons{
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 10px;
+}
