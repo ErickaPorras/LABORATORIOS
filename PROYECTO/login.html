@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Hospital Esperanza</title>
+</head>
+
+<body>
+
+  <h2>Iniciar Sesión</h2>
+
+  <input type="email" id="email" placeholder="Correo">
+  <br><br>
+
+  <input type="password" id="password" placeholder="Contraseña">
+  <br><br>
+
+  <button onclick="login()">Ingresar</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+  <script>
+    const supabaseUrl = "https://TU_URL.supabase.co";
+    const supabaseKey = "TU_ANON_KEY";
+
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+    async function login() {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        alert(error.message);
+      } else {
+        window.location.href = "index.html"; // tu página actual
+      }
+    }
+  </script>
+
+</body>
+</html>
