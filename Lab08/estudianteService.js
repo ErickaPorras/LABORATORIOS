@@ -29,7 +29,7 @@ import { supabase } from "./supabaseClient";
   Se define como constante para no repetir texto en todo el código
 */
 const TABLA_NOMBRE = "estudiantes";
-const COLUMNAS_MOSTRAR = "id, nombre, apellido, correo, carrera, fechaNac";
+const COLUMNAS_MOSTRAR = "id, nombre, apellido, correo, carrera, fecha_nacimiento";
 /*
   ------------------------------------------------------------
   mapEstudiantePayload
@@ -47,7 +47,7 @@ const mapEstudiantePayload = (estudiante) => ({
   apellido: estudiante.apellido?.trim() || "",
   correo: estudiante.correo?.trim() || "",
   carrera: estudiante.carrera?.trim() || "",
-  fechaNac: estudiante.fechaNac || null,
+  fecha_nacimiento: estudiante.fecha_nacimiento || null,
 });
 
 

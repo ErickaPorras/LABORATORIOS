@@ -31,7 +31,7 @@ const initialForm = {
   apellido: "",
   correo: "",
   carrera: "",
-  fechaNac: "",
+  fecha_nacimiento: "",
 };
 
 function App() {
@@ -111,9 +111,10 @@ function App() {
         !form.nombre.trim() ||
         !form.apellido.trim() ||
         !form.correo.trim() ||
-        !form.carrera.trim()
+        !form.carrera.trim() ||
+        !form.fecha_nacimiento.trim()
       ) {
-        alert("Debe completar nombre, apellido, correo y carrera");
+        alert("Debe completar todos los campos");
         return;
       }
 
@@ -139,7 +140,7 @@ function App() {
       apellido: student.apellido || "",
       correo: student.correo || "",
       carrera: student.carrera || "",
-      fechaNac: student.fechaNac || "",
+      fecha_nacimiento: student.fecha_nacimiento || "",
     });
   };
 
@@ -222,7 +223,7 @@ function App() {
 
           <input
             type="email"
-            name="correo"
+            name="correo" 
             placeholder="Correo"
             value={form.correo}
             onChange={handleChange}
@@ -238,8 +239,8 @@ function App() {
 
           <input
             type="date"
-            name="fechaNac"
-            value={form.fechaNac}
+            name="fecha_nacimiento"
+            value={form.fecha_nacimiento}
             onChange={handleChange}
           />
         </div>
@@ -300,7 +301,7 @@ function App() {
                   <td>{student.apellido}</td>
                   <td>{student.correo}</td>
                   <td>{student.carrera}</td>
-                  <td>{student.fechaNac || ""}</td>
+                  <td>{student.fecha_nacimiento || ""}</td>
                   <td>
                     <button onClick={() => handleEdit(student)}>Editar</button>{" "}
                     <button onClick={() => handleDelete(student.id)}>
