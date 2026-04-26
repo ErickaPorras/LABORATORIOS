@@ -23,7 +23,8 @@ function EstudianteTabla({ students, handleEdit, handleDelete }) {
               <td>{student.apellido}</td>
               <td>{student.correo}</td>
               <td>{student.carrera}</td>
-              <td>{student.fechaNac || ""}</td>
+              <td>{student.fecha_nacimiento || ""}</td>
+              
               <td>
                 <div style={{ display: "flex", gap: "8px" }}>
                   {typeof handleEdit === "function" && <button onClick={() => handleEdit(student)}>Editar</button>}

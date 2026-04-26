@@ -65,7 +65,7 @@ function FormEstudiante({ form, setForm, loadStudents, initialForm }) {
 
         <Input type="text" name="carrera" placeholder="Carrera" value={form.carrera} onChange={handleChange} />
 
-        <Input type="date" name="fechaNac" value={form.fechaNac} onChange={handleChange} />
+        <Input type="date" name="fecha_nacimiento" value={form.fecha_nacimiento} onChange={handleChange} />
       </div>
 
       <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
