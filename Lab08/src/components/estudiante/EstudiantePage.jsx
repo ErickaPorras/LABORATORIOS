@@ -9,7 +9,7 @@ const initialForm = {
   apellido: "",
   correo: "",
   carrera: "",
-  fechaNac: "",
+  fecha_nacimiento: "",
 };
 
 function EstudiantePage() {
@@ -33,7 +33,7 @@ function EstudiantePage() {
           apellido: student.apellido || "",
           correo: student.correo || "",
           carrera: student.carrera || "",
-          fechaNac: student.fechaNac || "",
+          fecha_nacimiento: student.fecha_nacimiento || "",
         });
       } catch (error) {
         console.error(error);

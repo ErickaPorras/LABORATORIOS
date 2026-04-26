@@ -1,6 +1,7 @@
 import { NavLink, Route, Routes } from "react-router-dom";
 import ListaEstudiantesPage from "./pages/ListaEstudiantesPage";
 import EstudiantePage from "./pages/EstudiantePage";
+import ListaCursosPage from "./pages/ListaCursosPage";
 
 function App() {
   return (
@@ -31,19 +32,25 @@ function App() {
         className="card"
         style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}
       >
-        <NavLink to="/" className="btn btn-secondary">
+        <NavLink to="/estudiantes" className="btn btn-secondary">
           Lista de estudiantes
         </NavLink>
 
-        <NavLink to="/nuevo" className="btn btn-primary">
+        <NavLink to="/estudiante/nuevo" className="btn btn-primary">
           Nuevo estudiante
+        </NavLink>
+
+        <NavLink to="/cursos" className="btn btn-secondary">
+          Lista de cursos
         </NavLink>
       </nav>
 
       <Routes>
-        <Route path="/" element={<ListaEstudiantesPage />} />
-        <Route path="/nuevo" element={<EstudiantePage />} />
-        <Route path="/editar/:id" element={<EstudiantePage />} />
+        <Route path="/" element={<ListaEstudiantesPage /> } />
+        <Route path="/estudiantes" element={<ListaEstudiantesPage />} />
+        <Route path="/estudiante/nuevo" element={<EstudiantePage />} />
+        <Route path="/estudiante/editar/:id" element={<EstudiantePage />} />
+        <Route path="/cursos" element={<ListaCursosPage />} />
       </Routes>
 
       <footer className="footer">
