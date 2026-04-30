@@ -1,63 +1,41 @@
 import { supabase } from "./supabase.js";
 
-// =====================================
-// CARGAR CITAS (TU CÓDIGO ORIGINAL)
-// =====================================
-async function cargarCitas() {
-  const tabla = document.getElementById("tablaCitas");
+document.addEventListener("DOMContentLoaded", () => {
 
-  try {
-    const { data, error } = await supabase
-      .from("pacientes")
-      .select("*")
-      .order("fecha_cita", { ascending: true });
+  console.log("Sistema cargado");
 
-    if (error) throw error;
+  // =====================================
+  // CITAS
+  // =====================================
+  const tablaCitas = document.getElementById("tablaCitas");
+  const btnBuscar = document.getElementById("btnBuscar");
+  const btnLimpiar = document.getElementById("btnLimpiar");
+  const inputBuscar = document.getElementById("txtBuscar");
 
-    tabla.innerHTML = "";
+  async function cargarCitas(filtro = "") {
 
-    data.forEach(cita => {
-      tabla.innerHTML += `
-        <tr>
-          <td>${cita.id}</td>
-          <td>${cita.nombre_completo}</td>
-          <td>${cita.especialidad}</td>
-          <td>${cita.fecha_cita}</td>
-          <td>${cita.hora_cita}</td>
-        </tr>
-      `;
-    });
+    if (!tablaCitas) return;
 
-  } catch (err) {
-    console.error(err);
-    alert("Error cargando citas");
-  }
-}
-
-// =====================================
-//  CARGAR CITAS CON FILTRO (NUEVO)
-// =====================================
-async function cargarCitasFiltradas(filtro) {
-  const tabla = document.getElementById("tablaCitas");
-
-  try {
     let query = supabase
       .from("pacientes")
       .select("*")
       .order("fecha_cita", { ascending: true });
 
-    if (filtro) {
+    if (filtro.trim() !== "") {
       query = query.ilike("nombre_completo", `%${filtro}%`);
     }
 
     const { data, error } = await query;
 
-    if (error) throw error;
+    if (error) {
+      console.error("Error citas:", error);
+      return;
+    }
 
-    tabla.innerHTML = "";
+    tablaCitas.innerHTML = "";
 
     data.forEach(cita => {
-      tabla.innerHTML += `
+      tablaCitas.innerHTML += `
         <tr>
           <td>${cita.id}</td>
           <td>${cita.nombre_completo}</td>
@@ -67,33 +45,48 @@ async function cargarCitasFiltradas(filtro) {
         </tr>
       `;
     });
-
-  } catch (err) {
-    console.error(err);
-    alert("Error en búsqueda");
   }
-}
 
-// =====================================
-//  CARGAR DIAGNÓSTICOS (NUEVO)
-// =====================================
-async function cargarDiagnosticos() {
-  const tabla = document.getElementById("tablaDiagnosticos");
+  btnBuscar?.addEventListener("click", () => {
+    cargarCitas(inputBuscar.value);
+  });
 
-  if (!tabla) return;
+  btnLimpiar?.addEventListener("click", () => {
+    inputBuscar.value = "";
+    cargarCitas();
+  });
 
-  try {
+  inputBuscar?.addEventListener("input", () => {
+    cargarCitas(inputBuscar.value);
+  });
+
+  // =====================================
+  // DIAGNÓSTICO (SIN ACCIONES)
+  // =====================================
+  const tablaDiagnostico = document.getElementById("tablaDiagnosticos");
+
+  async function cargarDiagnostico() {
+
+    if (!tablaDiagnostico) {
+      console.error("No existe tablaDiagnosticos en HTML");
+      return;
+    }
+
     const { data, error } = await supabase
       .from("diagnostico")
       .select("*");
 
-    if (error) throw error;
+    if (error) {
+      console.error("Error diagnóstico:", error);
+      return;
+    }
 
-    tabla.innerHTML = "";
+    tablaDiagnostico.innerHTML = "";
 
     data.forEach(d => {
-      tabla.innerHTML += `
+      tablaDiagnostico.innerHTML += `
         <tr>
+          <td>${d.id}</td>
           <td>${d.nombre}</td>
           <td>${d.edad}</td>
           <td>${d.sintomas}</td>
@@ -101,37 +94,12 @@ async function cargarDiagnosticos() {
         </tr>
       `;
     });
-
-  } catch (err) {
-    console.error(err);
-    alert("Error cargando diagnósticos");
   }
-}
 
-// =====================================
-// INICIAR TODO
-// =====================================
-document.addEventListener("DOMContentLoaded", () => {
-  cargarCitas();          // tu función original
-  cargarDiagnosticos();   // nueva tabla
+  // =====================================
+  // INICIO
+  // =====================================
+  cargarCitas();
+  cargarDiagnostico();
 
-  const btnBuscar = document.getElementById("btnBuscar");
-  const btnLimpiar = document.getElementById("btnLimpiar");
-  const input = document.getElementById("txtBuscar");
-
-  // BOTÓN BUSCAR
-  btnBuscar?.addEventListener("click", () => {
-    cargarCitasFiltradas(input.value);
-  });
-
-  // LIMPIAR
-  btnLimpiar?.addEventListener("click", () => {
-    input.value = "";
-    cargarCitas();
-  });
-
-  //  BÚSQUEDA EN TIEMPO REAL
-  input?.addEventListener("input", () => {
-    cargarCitasFiltradas(input.value);
-  });
 });
