@@ -8,23 +8,45 @@
 
 <body>
 
-  <h2>Iniciar Sesión</h2>
+  <div class="login-container">
 
-  <input type="email" id="email" placeholder="Correo">
-  <br><br>
+    <!-- HEADER -->
+    <div class="login-header">
+      <h2>Hospital Esperanza</h2>
+      <p>Acceso al sistema</p>
+    </div>
 
-  <input type="password" id="password" placeholder="Contraseña">
-  <br><br>
+    <!-- CUERPO -->
+    <div class="login-body">
 
-<button id="btnLogin">Ingresar</button>
-<button id="btnLimpiar">Limpiar</button>
+      <input type="email" id="email" placeholder="Correo">
+      <input type="password" id="password" placeholder="Contraseña">
 
+      <!-- BOTONES -->
+      <div class="botones-login">
+        <button id="btnLogin">Ingresar</button>
+        <button id="btnLimpiar">Limpiar</button>
+      </div>
 
-  < <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./app3.js" type="module"></script>
+      <!-- FOOTER -->
+      <div class="login-footer">
+        Sistema de gestión médica
+      </div>
 
-    
-  </script>
+    </div>
+
+  </div>
+
+  <!-- BOTÓN VOLVER -->
+  <div class="contenedor-boton">
+    <a href="http://127.0.0.1:5500/PROYECTO/">
+      <button class="btn-volver">Volver al Inicio</button>
+    </a>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./app3.js" type="module"></script>
 
 </body>
 </html>
