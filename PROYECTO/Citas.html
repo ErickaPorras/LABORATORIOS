@@ -1,12 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Citas</title>
+  <meta charset="UTF-8">
+  <title>Citas Registradas</title>
+  <link rel="stylesheet" href="estilos4.css">
 </head>
-<body>
-     Citas
-</body>
 
+<body>
+
+<header>
+  <h1>Hospital Esperanza</h1>
+  <p>Citas Registradas</p>
+</header>
+
+<div class="container">
+
+  <!--  BUSCADOR -->
+  <div class="busqueda">
+    <input type="text" id="txtBuscar" placeholder="Buscar por nombre..." />
+    <button id="btnBuscar">Buscar</button>
+    <button id="btnLimpiar">Limpiar</button>
+  </div>
+
+  <!-- TABLA CITAS -->
+  <h2>Listado de Citas</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cédula</th>
+        <th>Nombre</th>
+        <th>Especialidad</th>
+        <th>Fecha</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+    <tbody id="tablaCitas"></tbody>
+  </table>
+
+  <!-- TABLA DIAGNÓSTICOS -->
+  <h2>Diagnósticos Registrados</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Cedula</th>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Síntomas</th>
+        <th>Diagnóstico</th>
+      </tr>
+    </thead>
+    <tbody id="tablaDiagnosticos"></tbody>
+  </table>
+
+</div>
+
+<a href="http://127.0.0.1:5500/PROYECTO/">
+  <button class="btn-volver"> Volver al Inicio</button>
+</a>
+
+<script type="module" src="./app2.js"></script>
+
+</body>
 </html>

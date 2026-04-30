@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Login - Hospital Esperanza</title>
+  <link rel="stylesheet" href="estilos6.css">
 </head>
 
 <body>
@@ -15,31 +16,14 @@
   <input type="password" id="password" placeholder="Contraseña">
   <br><br>
 
-  <button onclick="login()">Ingresar</button>
+<button id="btnLogin">Ingresar</button>
+<button id="btnLimpiar">Limpiar</button>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 
-  <script>
-    const supabaseUrl = "https://TU_URL.supabase.co";
-    const supabaseKey = "TU_ANON_KEY";
+  < <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./app3.js" type="module"></script>
 
-    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
-
-    async function login() {
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      const { data, error } = await supabaseClient.auth.signInWithPassword({
-        email,
-        password
-      });
-
-      if (error) {
-        alert(error.message);
-      } else {
-        window.location.href = "index.html"; // tu página actual
-      }
-    }
+    
   </script>
 
 </body>

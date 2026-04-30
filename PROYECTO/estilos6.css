@@ -1,0 +1,86 @@
+/* ===== GENERAL ===== */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f8fb;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== CAJA LOGIN ===== */
+.login-container {
+  width: 350px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  text-align: center;
+}
+
+/* ===== TITULO ===== */
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #0b3c5d;
+}
+
+/* ===== INPUTS ===== */
+.login-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* ===== BOTONES CONTENEDOR ===== */
+.botones-login {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ===== BOTÓN INGRESAR ===== */
+#btnLogin {
+  background: linear-gradient(135deg, #0b3c5d, #1d6fa5);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* HOVER */
+#btnLogin:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #072c45, #155a85);
+}
+
+/* ===== BOTÓN LIMPIAR ===== */
+#btnLimpiar {
+  background: #dbe9f4;
+  color: #0b3c5d;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* HOVER */
+#btnLimpiar:hover {
+  background: #0b3c5d;
+  color: white;
+}
+
+/* ===== FOOTER ===== */
+.login-footer {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #555;
+}

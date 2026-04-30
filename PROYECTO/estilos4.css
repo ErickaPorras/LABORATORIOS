@@ -1,0 +1,84 @@
+/* ===== GENERAL ===== */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(135deg, #0b3c5d, #1d6fa5);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* ===== CONTENEDOR ===== */
+.container {
+  width: 85%;
+  margin: 30px auto;
+}
+
+/* ===== TABLA ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+th {
+  background: #0b3c5d;
+  color: white;
+  padding: 12px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background: #f1f7fb;
+}
+
+/* ===== TITULO ===== */
+h1 {
+  text-align: center;
+}
+.btn-volver {
+  margin-top: 20px;
+  background: linear-gradient(135deg, #0b3c5d, #1d6fa5);
+  color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #072c45, #155a85);
+}
+
+.btn-volver:active {
+  transform: scale(0.95);
+}
+
+.busqueda {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+.busqueda input {
+  padding: 8px;
+  width: 250px;
+}
+
+.busqueda button {
+  padding: 8px 12px;
+  cursor: pointer;
+}

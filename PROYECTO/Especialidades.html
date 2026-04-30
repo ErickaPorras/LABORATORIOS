@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Especialidades Médicas</title>
-    <link rel="stylesheet" href="estilos3.css">
-  
+  <link rel="stylesheet" href="estilos3.css">
+</head>
+
+<body>
 
 <header>
   <h1>Hospital Esperanza</h1>
@@ -13,72 +15,136 @@
 
 <div class="contenedor">
 
-  <!-- BOTONES -->
+  <!-- TABS -->
   <div class="tabs">
-    <button class="tab-btn active" onclick="mostrarTab('cardio')">Cardiología</button>
-    <button class="tab-btn" onclick="mostrarTab('pediatria')">Pediatría</button>
-    <button class="tab-btn" onclick="mostrarTab('dermatologia')">Dermatología</button>
-    <button class="tab-btn" onclick="mostrarTab('neurologia')">Neurología</button>
+    <button class="tab-btn active" data-tab="general">Medicina General</button>
+    <button class="tab-btn" data-tab="pediatria">Pediatría</button>
+    <button class="tab-btn" data-tab="cardio">Cardiología</button>
+    <button class="tab-btn" data-tab="gine">Ginecología</button>
+    <button class="tab-btn" data-tab="derma">Dermatología</button>
+    <button class="tab-btn" data-tab="neuro">Neurología</button>
+    <button class="tab-btn" data-tab="gastro">Gastroenterología</button>
+    <button class="tab-btn" data-tab="ortopedia">Ortopedia</button>
+    <button class="tab-btn" data-tab="oftalmo">Oftalmología</button>
+    <button class="tab-btn" data-tab="psiquiatria">Psiquiatría</button>
+    <button class="tab-btn" data-tab="endocrino">Endocrinología</button>
+    <button class="tab-btn" data-tab="psicologia">Psicología</button>
   </div>
 
-  <!-- CONTENIDO -->
-  <div id="cardio" class="tab-content active">
-    <div class="card">
-      <h3>Chequeo Cardíaco</h3>
-      <p>Evaluación completa del corazón y presión arterial.</p>
-    </div>
-    <div class="card">
-      <h3>Electrocardiograma</h3>
-      <p>Estudio del ritmo cardíaco.</p>
-    </div>
+  <!-- MEDICINA GENERAL -->
+  <div id="general" class="tab-content active">
+    <div class="card" data-diagnostico="Consulta Médica General">Consulta Médica</div>
+    <div class="card" data-diagnostico="Control de Salud">Control de Salud</div>
+    <div class="card" data-diagnostico="Chequeo Preventivo">Chequeo Preventivo</div>
   </div>
 
+  <!-- PEDIATRIA -->
   <div id="pediatria" class="tab-content">
-    <div class="card">
-      <h3>Control Infantil</h3>
-      <p>Seguimiento del crecimiento y desarrollo del niño.</p>
-    </div>
-    <div class="card">
-      <h3>Vacunación</h3>
-      <p>Aplicación de vacunas según edad.</p>
-    </div>
+    <div class="card" data-diagnostico="Consulta Pediátrica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Vacunación">Vacunación</div>
+    <div class="card" data-diagnostico="Control Infantil">Control Infantil</div>
   </div>
 
-  <div id="dermatologia" class="tab-content">
-    <div class="card">
-      <h3>Tratamiento de la piel</h3>
-      <p>Atención de acné, manchas y enfermedades cutáneas.</p>
-    </div>
+  <!-- CARDIO -->
+  <div id="cardio" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Cardiológica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Electrocardiograma">Electrocardiograma</div>
+    <div class="card" data-diagnostico="Chequeo Cardíaco">Chequeo Cardíaco</div>
   </div>
 
-  <div id="neurologia" class="tab-content">
-    <div class="card">
-      <h3>Evaluación Neurológica</h3>
-      <p>Diagnóstico de trastornos del sistema nervioso.</p>
-    </div>
+  <!-- GINE -->
+  <div id="gine" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Ginecológica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Control Prenatal">Control Prenatal</div>
+    <div class="card" data-diagnostico="Papanicolaou">Papanicolaou</div>
   </div>
-<a href="http://127.0.0.1:5500/PROYECTO/">
+
+  <!-- DERMATOLOGIA -->
+  <div id="derma" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Dermatológica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Tratamiento de Acné">Tratamiento de Acné</div>
+    <div class="card" data-diagnostico="Alergia Cutánea">Alergia Cutánea</div>
+  </div>
+
+  <!-- NEURO -->
+  <div id="neuro" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Neurológica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Migraña">Migraña</div>
+    <div class="card" data-diagnostico="Epilepsia">Epilepsia</div>
+  </div>
+
+  <!-- GASTRO -->
+  <div id="gastro" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Gastroenterológica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Gastritis">Gastritis</div>
+    <div class="card" data-diagnostico="Reflujo">Reflujo</div>
+  </div>
+
+  <!-- ORTOPEDIA -->
+  <div id="ortopedia" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Ortopédica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Fracturas">Fracturas</div>
+    <div class="card" data-diagnostico="Dolor Articular">Dolor Articular</div>
+  </div>
+
+  <!-- OFTALMO -->
+  <div id="oftalmo" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Oftalmológica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Examen Visual">Examen Visual</div>
+    <div class="card" data-diagnostico="Glaucoma">Glaucoma</div>
+  </div>
+
+  <!-- PSIQUIATRIA -->
+  <div id="psiquiatria" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Psiquiátrica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Depresión">Depresión</div>
+    <div class="card" data-diagnostico="Ansiedad">Ansiedad</div>
+  </div>
+
+  <!-- ENDOCRINO -->
+  <div id="endocrino" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Endocrinológica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Diabetes">Diabetes</div>
+    <div class="card" data-diagnostico="Problemas Tiroideos">Problemas Tiroideos</div>
+  </div>
+
+  <!-- PSICOLOGIA -->
+  <div id="psicologia" class="tab-content">
+    <div class="card" data-diagnostico="Consulta Psicológica">Consulta Médica</div>
+    <div class="card" data-diagnostico="Terapia Individual">Terapia Individual</div>
+    <div class="card" data-diagnostico="Estrés">Estrés</div>
+  </div>
+
+  <!-- FORMULARIO -->
+  <div class="formulario" id="formulario">
+    <h3 id="tituloForm"></h3>
+
+    <label>Nombre del paciente</label>
+    <input type="text" id="nombre">
+
+    <label>Edad</label>
+    <input type="number" id="edad">
+
+    <label>Síntomas</label>
+    <textarea id="sintomas"></textarea>
+
+    <label>Diagnóstico</label>
+    <input type="text" id="diagnostico">
+
+    <button id="btnGuardarDiagnostico">Guardar</button>
+    <button id="btnLimpiarDiagnostico">Limpiar</button>
+  </div>
+
+  <a href="http://127.0.0.1:5500/PROYECTO/">
   <button class="btn-volver"> Volver al Inicio</button>
 </a>
+
 </div>
 
-<script>
-  function mostrarTab(tabId) {
-    // Ocultar todos
-    const contenidos = document.querySelectorAll(".tab-content");
-    contenidos.forEach(c => c.classList.remove("active"));
 
-    // Quitar active de botones
-    const botones = document.querySelectorAll(".tab-btn");
-    botones.forEach(b => b.classList.remove("active"));
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script type="module" src="./app.js"></script>
 
-    // Mostrar seleccionado
-    document.getElementById(tabId).classList.add("active");
-
-    // Activar botón
-    event.target.classList.add("active");
-  }
-</script>
 
 </body>
 </html>
