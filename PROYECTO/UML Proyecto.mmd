@@ -28,8 +28,6 @@ class GestionPacientes {
 
 class Cita {
   +int IdCita
-  +int IdPaciente_FK
-  +int IdMedico_FK
   +date Fecha
   +string Hora
   +string Estado
@@ -38,7 +36,6 @@ class Cita {
 class Medico {
   +int IdMedico
   +string NombreCompleto
-  +int IdEspecialidad_FK
 }
 
 class Especialidad {
@@ -48,7 +45,6 @@ class Especialidad {
 
 class HistorialMedico {
   +int IdHistorial
-  +int IdPaciente_FK
   +string Diagnostico
   +string Tratamiento
   +date FechaRegistro
@@ -66,18 +62,23 @@ class Ayuda {
   +preguntasFrecuentes()
 }
 
-BaseDeDatos --> Paciente : guarda
-BaseDeDatos --> Cita : almacena
-BaseDeDatos --> HistorialMedico : registra
-
-GestionPacientes --> Paciente : gestiona
+GestionPacientes --> Paciente : administra
 GestionPacientes --> BaseDeDatos : usa
+
+BaseDeDatos --> Paciente : almacena
+BaseDeDatos --> Cita : almacena
+BaseDeDatos --> HistorialMedico : almacena
 
 Paciente "1" --> "0..*" Cita : agenda
 Medico "1" --> "0..*" Cita : atiende
-Usuario "1" --> "0..*" Cita : gestiona
+Usuario "1" --> "0..*" Cita : registra
 
 Medico --> Especialidad : pertenece
-Paciente --> HistorialMedico : tiene
+Paciente "1" --> "0..*" HistorialMedico : posee
 
-Ayuda --> Usuario : soporte
+Cita --> Paciente : corresponde a
+Cita --> Medico : asignado a
+
+Ayuda --> Usuario : asiste
+Ayuda --> GestionPacientes : guia
+Ayuda --> Cita : ayuda
