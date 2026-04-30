@@ -109,3 +109,26 @@ body {
   color: #777;
   margin-top: 15px;
 }
+
+/* ===== BOTÓN VOLVER ===== */
+.btn-volver {
+  padding: 10px 20px;
+  font-size: 10px;
+  min-width: 20px;
+  background: linear-gradient(135deg, #0b3c5d, #1d6fa5);
+  color: white;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-volver:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #072c45, #155a85);
+}
+
+.btn-volver:active {
+  transform: scale(0.95);
+}
